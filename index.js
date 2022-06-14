@@ -23,6 +23,10 @@ const run = async () => {
         const userCollection = db.collection("users");
         const candidateCollection = db.collection("candidate");
 
+        // API to Run Server 
+        app.get("/", async (req, res) => {
+            res.send("Server is Running");
+        });
 
     }
     finally {
