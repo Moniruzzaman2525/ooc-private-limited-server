@@ -28,6 +28,25 @@ const run = async () => {
             res.send("Server is Running");
         });
 
+        // API to Get All Users
+        app.get("/users", async (req, res) => {
+            const users = await userCollection.find({}).toArray();
+            res.send(users);
+        }
+        );
+        // API to Get All Users
+        app.get("/users", async (req, res) => {
+            const users = await userCollection.find({}).toArray();
+            res.send(users);
+        }
+        );
+
+        // API to get all candidate
+        app.get("/candidates", async (req, res) => {
+            const candidates = await candidateCollection.find({}).toArray();
+            res.send(candidates)
+        })
+
     }
     finally {
         // client.close(); 
