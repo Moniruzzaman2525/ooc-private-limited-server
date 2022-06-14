@@ -47,6 +47,24 @@ const run = async () => {
             res.send(candidates)
         })
 
+        // API to update a candidate with id
+        app.put("/candidates/:id", async (req, res) => {
+            const id = req.params.id;
+            const candidate = req.body;
+            // console.log(candidate, id);
+            const result = await candidateCollection.updateOne({ _id: ObjectId(id) }, { $set: candidate });
+            res.send(result);
+        }
+        );
+
+        // API to delete a candidate with id
+        app.delete("/candidates/:id", async (req, res) => {
+            const id = req.params.id;
+            await candidateCollection.deleteOne({ _id: ObjectId(id) });
+            res.send("Candidate Deleted");
+        }
+        );
+
     }
     finally {
         // client.close(); 
