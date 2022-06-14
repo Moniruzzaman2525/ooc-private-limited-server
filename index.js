@@ -65,6 +65,26 @@ const run = async () => {
         }
         );
 
+        // API to add a candidate
+        app.post("/candidates", async (req, res) => {
+            const candidate = req.body;
+            const result = await candidateCollection.insertOne(candidate);
+            res.send(result);
+        });
+
+        //API to create a new user
+        app.put("/users", async (req, res) => {
+            const email = req.body.email;
+            const password = req.body.password;
+            const number = req.body.number;
+            hashPass = await bcrypt.hash(password, 10);
+            const registeredUser = await userCollection.insertOne({ email, password: hashPass, number });
+            // console.log(registeredUser);
+
+            res.send(registeredUser);
+        }
+        );
+
     }
     finally {
         // client.close(); 
